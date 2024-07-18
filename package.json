@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NicoRio-ctrl/NodeJS-Proyecto-Final.git"
+    "url": "git@github.com:NicoRio-ctrl/NodeJS-Proyecto-Final.git"
   },
   "author": "Nicolas Rio y Matias Leguizamon",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NicoRio-ctrl/NodeJS-Proyecto-Final/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/NicoRio-ctrl/NodeJS-Proyecto-Final#readme",
+  "homepage": "",
   "dependencies": {
     "express": "^4.19.2"
   }
