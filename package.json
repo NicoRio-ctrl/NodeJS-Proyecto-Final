@@ -1,0 +1,24 @@
+{
+  "name": "proyecto-final-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicoRio-ctrl/NodeJS-Proyecto-Final.git"
+  },
+  "author": "Nicolas Rio y Matias Leguizamon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicoRio-ctrl/NodeJS-Proyecto-Final/issues"
+  },
+  "homepage": "https://github.com/NicoRio-ctrl/NodeJS-Proyecto-Final#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
