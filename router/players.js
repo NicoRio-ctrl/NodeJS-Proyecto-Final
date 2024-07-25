@@ -9,23 +9,21 @@ router.get("/", playerController.getAll);
 // GET by search
 router.get("/s", playerController.getByName);
 
-// GET player by authId
-router.get("/:authId", (req, res) => {
-  const { authId } = req.params;
-  res.send(`List a player by authID: ${authId}`);
-});
+// GET by search
+router.get("/s1", playerController.getByNameInclude);
+
+// // GET player by authId
+router.get("/:authId", playerController.getByAuthId);
 
 // CREATE player by authID
-router.post("/", (req, res) => res.send("Create a player"));
+router.post("/", playerController.addOnePlayer);
 
 // UPDATE player  by authID
-router.patch("/:authId", (req, res) => {
-  const { authId } = req.params;
-  res.send(`Update a player by authId: ${authId}`);
-});
+router.patch("/:authId", playerController.updateOnePlayer);
+// router.patch("/:authId", (req, res) => {
+//   const { authId } = req.params;
+//   res.send(`Update a player by authId: ${authId}`);
+// });
 
-//DELETE player by authID
-router.delete("/:authId", (req, res) => {
-  const { authId } = req.params;
-  res.send(`Delete a player by authId: ${authId}`);
-});
+//DELETE player
+router.delete("/:authId", playerController.deleteOnePlayer);
