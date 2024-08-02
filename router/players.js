@@ -1,10 +1,13 @@
 import { Router } from "express";
 import { playerController } from "../controller/playersController.js";
+import { token } from "../service/jwt.js"
+
+
 
 export const router = Router();
 
 // GET all players
-router.get("/", playerController.getAll);
+router.get("/",  token.validate, playerController.getAll);
 
 // GET by search
 router.get("/s", playerController.getByName);
@@ -27,3 +30,5 @@ router.patch("/:authId", playerController.updateOnePlayer);
 
 //DELETE player
 router.delete("/:authId", playerController.deleteOnePlayer);
+
+router.get("/top", playerController.calcTopGoals);
