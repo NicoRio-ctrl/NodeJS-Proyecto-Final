@@ -1,34 +1,27 @@
 import { Router } from "express";
 import { playerController } from "../controller/playersController.js";
-import { token } from "../service/jwt.js"
-
-
+import { token } from "../service/jwt.js";
+import { isAdmin } from "../service/authMiddleware.js";
 
 export const router = Router();
-
-// GET all players
-router.get("/",  token.validate, playerController.getAll);
-
-// GET by search
-router.get("/s", playerController.getByName);
-
-// GET by search
-router.get("/s1", playerController.getByNameInclude);
-
-// // GET player by authId
-router.get("/:authId", playerController.getByAuthId);
 
 // CREATE player by authID
 router.post("/", playerController.addOnePlayer);
 
-// UPDATE player  by authID
-router.patch("/:authId", playerController.updateOnePlayer);
-// router.patch("/:authId", (req, res) => {
-//   const { authId } = req.params;
-//   res.send(`Update a player by authId: ${authId}`);
-// });
+// GET all players
+router.get("/", token.validate, playerController.getAll);
 
-//DELETE player
-router.delete("/:authId", playerController.deleteOnePlayer);
+// GET by search
+router.get("/s", token.validate, playerController.getByName);
 
-router.get("/top", playerController.calcTopGoals);
+// GET by search
+router.get("/s1", token.validate, playerController.getByNameInclude);
+
+// GET player by authId
+router.get("/:authId", token.validate, playerController.getByAuthId);
+
+// UPDATE player by authID
+router.patch("/:authId", token.validate, isAdmin, playerController.updateOnePlayer);
+
+// DELETE player
+router.delete("/:authId", token.validate, isAdmin, playerController.deleteOnePlayer);

@@ -1,6 +1,5 @@
-import mongoose from 'mongoose';  // Corrección: usar `import mongoose from 'mongoose'` sin las llaves
+import mongoose from 'mongoose';
 
-// MongoDB Schema
 const playerSchema = new mongoose.Schema({
     player: {
         name: {
@@ -17,10 +16,10 @@ const playerSchema = new mongoose.Schema({
         },
         admin: {
             type: Boolean,
-            default: false  // Establece el valor predeterminado para admin
+            default: false
         },
         position: {
-            type: String,  // Cambié de `null` a `String` para que acepte valores nulos o de cadena
+            type: String,  
             default: null
         }
     },
@@ -132,11 +131,11 @@ const playerSchema = new mongoose.Schema({
             default: 0
         },
         historyMessage: {
-            type: [String],  // Tipo de datos de matriz de cadenas
+            type: [String],  
             default: []
         },
         messageTimestamps: {
-            type: [Number],  // Tipo de datos de matriz de números
+            type: [Number], 
             default: []
         },
         ranked: {
@@ -178,5 +177,4 @@ const playerSchema = new mongoose.Schema({
     }
 });
 
-// Creación del modelo PlayerFormat
 export const PlayerFormat = mongoose.model("PlayerFormat", playerSchema);

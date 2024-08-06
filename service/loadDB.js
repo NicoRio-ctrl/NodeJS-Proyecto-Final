@@ -33,14 +33,3 @@ export const loadDB = async () => {
     await Promise.all(playerPromises);
     console.log("Todos los jugadores han sido agregados exitosamente");
 }
-
-// getAll(req, res) {
-//     console.log('Soy del getAll -> ', playersdb, 'Y su tipo es: ', typeof(playersdb), 'Y su tamanio es: ', playersdb.length)
-//     playersdb.players.length
-//         ? res
-//             .status(200)
-//             .json({ success: true, message: "List of players", data: playersdb.players })
-//         : res
-//             .status(404)
-//             .json({ success: false, message: "players database empty" });
-// }

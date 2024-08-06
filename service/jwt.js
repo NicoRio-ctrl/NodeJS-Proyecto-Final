@@ -6,14 +6,20 @@ export const token = {
   async generate(user) {
     console.log(user);
     const userForToken = {
+      id: user._id, 
       fullName: user.fullName,
       email: user.email,
+      admin: user.admin, 
     };
     console.log(userForToken);
     return jwt.sign(userForToken, secret, { expiresIn: "1h" });
   },
+
   async validate(req, res, next) {
-    const token = req.headers?.authorization?.split(" ")[1];
+    
+    const authHeader = req.headers?.authorization;
+    const token = authHeader && authHeader.split(" ")[1]; 
+
     if (token) {
       jwt.verify(token, secret, (err, decoded) => {
         if (err) {
@@ -21,7 +27,8 @@ export const token = {
             .status(401)
             .json({ success: false, message: "Invalid or Expired token" });
         }
-        req.decoded = decoded;
+
+        req.user = decoded;
         next();
       });
     } else {

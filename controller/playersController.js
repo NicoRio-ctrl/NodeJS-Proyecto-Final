@@ -3,20 +3,19 @@ import { PlayerFormat } from "../model/mongoDB/playerModel.js";
 export const playerController = {
 
 
-    async getAll(req, res) {
-      const playerCollection = await PlayerFormat.find();
-      playerCollection
-        ? res.status(200).json({
-            success: true,
-            message: "List of players",
-            data: playerCollection})
-        : res
-            .status(404)
-            .json({ success: false, message: "Players database empty" });
-    },
+  async getAll(req, res) {
+    const playerCollection = await PlayerFormat.find();
+    playerCollection
+      ? res.status(200).json({
+          success: true,
+          message: "List of players",
+          data: playerCollection})
+      : res
+          .status(404)
+          .json({ success: false, message: "Players database empty" });
+  },
   
-  // Get by name
-  getByName(req, res) {
+ getByName(req, res) {
     const { name } = req.query;
     if(name){
       const playerName = playersdb.players.filter(p => p.player.name === name);
@@ -32,7 +31,6 @@ export const playerController = {
       } 
   },
 
-  // Get by name include
     getByNameInclude(req, res) {
       const { name } = req.query;
       if(name){
@@ -117,48 +115,4 @@ export const playerController = {
         res.status(308).json({ success: false, message: err.message });
       }
     },
-
-    async calcTopGoals(req, res) {
-      try {
-        // Obtener todos los jugadores de la base de datos
-        const players = await PlayerFormat.find();
-        console.log('Players fetched from DB:', players);
-        
-        // Ordenar los jugadores por el número de goles
-        const topGoals = players.slice().sort((a, b) => b.stats.goals - a.stats.goals);
-    
-        // Imprimir el array de topGoals en un formato legible
-        console.log('Top goals sorted:', JSON.stringify(topGoals, null, 2));
-        
-        if (topGoals.length > 0) {
-          res.status(200).json({ success: true, data: topGoals });
-        } else {
-          res.status(404).json({ success: false, message: "No players found" });
-        }
-      } catch (err) {
-        console.error('Error in calcTopGoals:', err);
-        res.status(500).json({ success: false, message: err.message });
-      }
-    }
-    
-
-
 };
-
-// function calcGoals() {
-//   topGoals = listPlayers.slice().sort((a, b) => b.stats.goals - a.stats.goals);
-// }
-
-// // Calcula el top de asistencias
-// function calcAsists() {
-//   topAsists = listPlayers
-//     .slice()
-//     .sort((a, b) => b.stats.asists - a.stats.asists);
-// }
-
-// // Calcula el top de goles en contra
-// function calcGoalsAgainsts() {
-//   topGoalsAgainst = listPlayers
-//     .slice()
-//     .sort((a, b) => b.stats.goalsAgainst - a.stats.goalsAgainst);
-// }
